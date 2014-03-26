@@ -1,10 +1,11 @@
 <?php
 
 function islandora_relationship_editor_add_relationships(array $form, array &$form_state, $object_pid) {
-
+    if (strpos(':', $object_pid) === FALSE) {
+      $object_pid = urldecode($object_pid);
+     }
 $options_relationship = get_possible_relationships($object_pid);
 $value_relationship = !empty($form_state['values']['relationship']) ? $form_state['values']['relationship'] : "";
-
   $form = array();
   $form['this'] = array(
     '#title' => t('This Object'),
@@ -82,6 +83,7 @@ $value_relationship = !empty($form_state['values']['relationship']) ? $form_stat
     '#type' => 'textfield',
     '#title' => t('Target object'),
     '#required' => TRUE,
+	//Agregar autocomplete acá con los objetos
   );
 
   $form['symmetric'] = array(
