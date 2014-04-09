@@ -83,6 +83,7 @@ $value_relationship = !empty($form_state['values']['relationship']) ? $form_stat
     '#type' => 'textfield',
     '#title' => t('Target object'),
     '#required' => TRUE,
+	'#autocomplete_path' => 'islandora/relationships/autocomplete/target/',
 	//Agregar autocomplete acá con los objetos
   );
 
